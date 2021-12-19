@@ -28,7 +28,7 @@ unsigned LoopMeshBuilder::marchCubes(const ParametricScalarField &field)
     unsigned totalTriangles = 0;
 
     // 2. Loop over each coordinate in the 3D grid.
-    #pragma omp parallel for
+    #pragma omp for
     for(size_t i = 0; i < totalCubesCount; ++i)
     {
         // 3. Compute 3D position in the grid.
@@ -62,7 +62,7 @@ float LoopMeshBuilder::evaluateFieldAt(const Vec3_t<float> &pos, const Parametri
 
     // 2. Find minimum square distance from points "pos" to any point in the
     //    field.
-    #pragma omp parallel for
+    #pragma omp for
     for(unsigned i = 0; i < count; ++i)
     {
         float distanceSquared  = (pos.x - pPoints[i].x) * (pos.x - pPoints[i].x);
