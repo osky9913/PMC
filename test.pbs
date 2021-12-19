@@ -17,6 +17,5 @@ touch result.txt
 CC=icc CXX=icpc cmake ..
 make
 
-./PMC ../data/bun_zipper_res1.pts -b -ref --batch >> result.txt
-./PMC ../data/bun_zipper_res1.pts -b -loop --batch >> result.txt
-./PMC ../data/bun_zipper_res1.pts -b -tree --batch >> result.txt
+./PMC ../data/bun_zipper_res1.pts ../data/ref/bun_zipper_res1.obj -b ref  >> result.txt
+./PMC ../data/bun_zipper_res1.pts ../data/loop/bun_zipper_res1.obj -b loop  >> result.txt
