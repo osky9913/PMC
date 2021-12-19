@@ -1,0 +1,22 @@
+#!/bin/bash
+#PBS -q qexp
+#PBS -A dd-21-22
+#PBS -l select=1:ncpus=36
+#PBS -l walltime=1:00:00
+#PBS -m e
+#PBS -N AVS-test
+
+
+cd $PBS_O_WORKDIR
+ml CMake intel-compilers/2021.1.2
+rm -rf build_test
+mkdir build_test
+cd build_test
+rm result.txt
+touch result.txt
+CC=icc CXX=icpc cmake ..
+make
+
+./PMC ../data/bun_zipper_res1.pts -b -ref --batch >> result.txt
+./PMC ../data/bun_zipper_res1.pts -b -loop --batch >> result.txt
+./PMC ../data/bun_zipper_res1.pts -b -tree --batch >> result.txt
